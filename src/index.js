@@ -1,0 +1,11 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const port = 3000;
+const userController = require('./controllers/user');
+const tradeController = require('./controllers/trade');
+app.use(express.json());
+mongoose.connect('mongodb://localhost:27017/aurora-trader', { useNewUrlParser: true, useUnifiedTopology: true });
+app.use('/users', userController);
+app.use('/trades', tradeController);
+app.listen(port, () => console.log(`Server listening on port ${port}`));
